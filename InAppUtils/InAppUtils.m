@@ -328,9 +328,9 @@ RCT_EXPORT_METHOD(receiptData:(RCTResponseSenderBlock)callback)
 
             NSDictionary *introductoryPrice = @{
                                                 @"price": product.introductoryPrice.price,
-                                                @"currencySymbol": [product.introductoryPrice.priceLocale objectForKey:NSLocaleCurrencySymbol],
-                                                @"currencyCode": [product.introductoryPrice.priceLocale objectForKey:NSLocaleCurrencyCode],
-                                                @"countryCode": [product.introductoryPrice.priceLocale objectForKey: NSLocaleCountryCode],
+                                                @"currencySymbol": (product.introductoryPrice.priceLocale != nil) ? [product.introductoryPrice.priceLocale objectForKey:NSLocaleCurrencySymbol] : @"",
+                                                @"currencyCode": (product.introductoryPrice.priceLocale != nil) ? [product.introductoryPrice.priceLocale objectForKey:NSLocaleCurrencyCode] : @"",
+                                                @"countryCode": (product.introductoryPrice.priceLocale != nil) ? [product.introductoryPrice.priceLocale objectForKey:NSLocaleCountryCode] : @"",
                                                 @"priceString": product.introductoryPrice.priceString,
                                                 @"numberOfPeriods": [[NSNumber alloc] initWithLong:product.introductoryPrice.numberOfPeriods],
                                                 @"paymentMode": paymentMode,
