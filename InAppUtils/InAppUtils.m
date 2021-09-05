@@ -227,10 +227,10 @@ RCT_EXPORT_METHOD(receiptData:(RCTResponseSenderBlock)callback)
             NSDictionary *product = @{
                 @"identifier": item.productIdentifier,
                 @"price": item.price,
-                @"currencySymbol": [item.priceLocale objectForKey:NSLocaleCurrencySymbol],
-                @"currencyCode": [item.priceLocale objectForKey:NSLocaleCurrencyCode],
+                @"currencySymbol": (item.priceLocale != nil && [item.priceLocale objectForKey: NSLocaleCurrencySymbol] != nil) ? [item.priceLocale objectForKey: NSLocaleCurrencySymbol] : @"",
+                @"currencyCode": (item.priceLocale != nil && [item.priceLocale objectForKey: NSLocaleCurrencyCode] != nil) ? [item.priceLocale objectForKey: NSLocaleCurrencyCode] : @"",
                 @"priceString": item.priceString,
-                @"countryCode": [item.priceLocale objectForKey: NSLocaleCountryCode],
+                @"countryCode": (item.priceLocale != nil && [item.priceLocale objectForKey: NSLocaleCountryCode] != nil) ? [item.priceLocale objectForKey: NSLocaleCountryCode] : @"",
                 @"downloadable": item.isDownloadable ? @"true" : @"false" ,
                 @"description": item.localizedDescription ? item.localizedDescription : @"",
                 @"title": item.localizedTitle ? item.localizedTitle : @"",
@@ -326,9 +326,9 @@ RCT_EXPORT_METHOD(receiptData:(RCTResponseSenderBlock)callback)
 
             NSDictionary *introductoryPrice = @{
                                                 @"price": product.introductoryPrice.price,
-                                                @"currencySymbol": (product.introductoryPrice.priceLocale != nil) ? [product.introductoryPrice.priceLocale objectForKey:NSLocaleCurrencySymbol] : @"",
-                                                @"currencyCode": (product.introductoryPrice.priceLocale != nil) ? [product.introductoryPrice.priceLocale objectForKey:NSLocaleCurrencyCode] : @"",
-                                                @"countryCode": (product.introductoryPrice.priceLocale != nil) ? [product.introductoryPrice.priceLocale objectForKey:NSLocaleCountryCode] : @"",
+                                                @"currencySymbol": (product.introductoryPrice.priceLocale != nil && [product.introductoryPrice.priceLocale objectForKey: NSLocaleCurrencySymbol] != nil) ? [product.introductoryPrice.priceLocale objectForKey: NSLocaleCurrencySymbol] : @"",
+                                                @"currencyCode": (product.introductoryPrice.priceLocale != nil && [product.introductoryPrice.priceLocale objectForKey: NSLocaleCurrencyCode] != nil) ? [product.introductoryPrice.priceLocale objectForKey:NSLocaleCurrencyCode] : @"",
+                                                @"countryCode": (product.introductoryPrice.priceLocale != nil && [product.introductoryPrice.priceLocale objectForKey: NSLocaleCountryCode] != nil) ? [product.introductoryPrice.priceLocale objectForKey:NSLocaleCountryCode] : @"",
                                                 @"priceString": product.introductoryPrice.priceString,
                                                 @"numberOfPeriods": [[NSNumber alloc] initWithLong:product.introductoryPrice.numberOfPeriods],
                                                 @"paymentMode": paymentMode,
